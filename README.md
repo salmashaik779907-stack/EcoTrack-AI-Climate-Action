@@ -148,10 +148,10 @@ The project uses supply-chain inventory data containing fields such as:
 **Project Type:** Group Project
 
 **Team Members:**
-1. [Member 1 – Name]
-2. [Member 2 – Name]
-3. [Member 3 – Name]
-4. [Member 4 – Name]
+1. Shaik Salma Begum
+2.Shaik AshrafUddinsha
+3.Shaik Rehana
+4.S.Siri Renuka
 
 *Replace the placeholders with the names and contributions of all team members.*
 
