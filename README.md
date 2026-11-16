@@ -1,6 +1,13 @@
 # EcoTrack AI – Sustainable Inventory & Waste Reduction System
 
 **An AI-powered inventory monitoring and decision-support system supporting Climate Action (UN Sustainable Development Goal 13).**
+## 🚀 Live Project
+
+**Live Demo:** https://ecotrack-ai-climate-action-jgcebbevn9vnxsubznmhl9.streamlit.app/
+
+**GitHub Repository:** https://github.com/salmashaik779907-stack/EcoTrack-AI-Climate-Action
+
+Try the live EcoTrack AI dashboard to explore inventory monitoring, risk analysis, smart recommendations, and what-if simulation.
 
 ## 1. Project Overview
 
