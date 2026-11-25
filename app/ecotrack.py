@@ -1,4 +1,3 @@
-
 import streamlit as st
 import pandas as pd
 import plotly.express as px
@@ -72,7 +71,6 @@ st.caption(
 
 @st.cache_data
 def load_data():
-
     df = pd.read_csv(
         "data/raw/supply_chain_dataset1.csv"
     )
@@ -102,7 +100,6 @@ def load_data():
 
 try:
     df = load_data()
-
 except Exception as error:
     st.error(f"Dataset loading failed: {error}")
     st.stop()
@@ -169,11 +166,6 @@ if latest_snapshot.empty:
 # SURPLUS AND RISK CALCULATIONS
 # =====================================================
 
-
-# =====================================================
-# SURPLUS AND RISK CALCULATIONS
-# =====================================================
-
 # Assumption: Demand_Forecast represents daily demand.
 # Initial planning target: 30 days of stock coverage.
 COVERAGE_DAYS = 30
@@ -209,6 +201,7 @@ latest_snapshot.loc[
     latest_snapshot["Stock_Coverage_Ratio"] > 1.5,
     "Risk_Level"
 ] = "High"
+
 # =====================================================
 # DASHBOARD TABS
 # =====================================================
@@ -219,12 +212,12 @@ tab1, tab2, tab3, tab4 = st.tabs([
     "Smart Recommendations",
     "What-If Simulation"
 ])
+
 # =====================================================
 # TAB 1: OVERVIEW
 # =====================================================
 
 with tab1:
-
     st.markdown("## 🌱 Inventory Sustainability Overview")
 
     col1, col2, col3, col4 = st.columns(4)
@@ -301,7 +294,6 @@ with tab1:
 # =====================================================
 
 with tab2:
-
     st.markdown("## Potential Surplus Risk Analysis")
 
     st.info(
@@ -318,7 +310,6 @@ with tab2:
     risk_data = latest_snapshot.copy()
 
     if risk_filter != "All":
-
         risk_data = risk_data[
             risk_data["Risk_Level"] == risk_filter
         ]
@@ -359,19 +350,11 @@ with tab2:
         mime="text/csv"
     )
 
-
-# =====================================================
-# TAB 3: SMART RECOMMENDATIONS
-# =====================================================
-
-
-
 # =====================================================
 # TAB 3: SMART RECOMMENDATIONS
 # =====================================================
 
 with tab3:
-
     st.markdown("## 🤖 Smart Inventory Recommendations")
 
     st.info(
@@ -400,21 +383,31 @@ with tab3:
     )
 
     def recommend(row):
-
         if row["Stock_Coverage_Ratio"] > 1.5:
             return "High Stock - Review New Orders"
-
         elif row["Stock_Coverage_Ratio"] > 1:
             return "Moderate Surplus - Monitor Stock"
-
         elif row["Current_Inventory"] < row["Reorder_Point"]:
             return "Low Stock - Consider Replenishment"
-
         else:
             return "Stock Level - Monitor Regularly"
 
     summary["Recommendation"] = summary.apply(
         recommend,
+        axis=1
+    )
+
+    # Additional sustainability action suggestions
+    def sustainability_action(row):
+        if row["Potential_Surplus"] > 0:
+            return "Review redistribution, discounts or future orders"
+        elif row["Current_Inventory"] < row["Reorder_Point"]:
+            return "Plan replenishment based on demand"
+        else:
+            return "Maintain stock and monitor demand"
+
+    summary["Sustainability_Action"] = summary.apply(
+        sustainability_action,
         axis=1
     )
 
@@ -434,7 +427,6 @@ with tab3:
         mime="text/csv"
     )
 
-
 # =====================================================
 # CLIMATE ACTION SECTION
 # =====================================================
@@ -452,7 +444,6 @@ st.write(
 col1, col2 = st.columns(2)
 
 with col1:
-
     st.markdown("### Our Objectives")
 
     st.write("""
@@ -463,7 +454,6 @@ with col1:
     """)
 
 with col2:
-
     st.markdown("### Expected Benefits")
 
     st.write("""
@@ -480,12 +470,12 @@ st.success(
 st.caption(
     "EcoTrack AI | Sustainable Inventory Intelligence"
 )
+
 # =====================================================
 # TAB 4: WHAT-IF SIMULATION
 # =====================================================
 
 with tab4:
-
     st.markdown("## 🌍 Surplus Reduction Simulation")
 
     st.write(
